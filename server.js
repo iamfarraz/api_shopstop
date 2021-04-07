@@ -10,15 +10,20 @@ const app=express();
 
 app.use(bodyParser.json());
 app.use(cors());
-const db=knex({
-  client: 'mysql',
-  connection: {
-    host : 'us-cdbr-east-03.cleardb.com',
-    user : 'b45501885fe09f',
-    password : '15645a6c',
-    database : 'heroku_b5557678aae1bf1'
-  }
-});
+
+
+const db = mysql.createConnection({
+  host : 'us-cdbr-east-03.cleardb.com',
+  user : 'b45501885fe09f',
+  password : '15645a6c',
+  database : 'heroku_b5557678aae1bf1'
+  });
+  
+ db.connect((err)=>{
+     if(err)throw err;
+     console.log("db connected");
+   
+ });
 
 
 // get-> locality( locality and shop  )
@@ -49,9 +54,14 @@ app.post('/userreg',(req,res)=>handlereg(req,res,db,bcrypt));
 // post-> login (user )
 app.post('/userlogin',(req,res)=>handlelogin(req,res,db,bcrypt))
 
+
 app.get('/check',(req,res)=>{
-  db.select('*').from('user')
-  .then(data=>res.json(data))
+  const sql="SELECT * FROM user";
+  db.query(sql, function (err, result) {
+    if (err) throw err;
+    console.log("Result: " + result);
+    res.json(result);
+  });
 
 })
 
