@@ -2,7 +2,6 @@ import express from 'express';
 import mysql from 'mysql';
 import bodyParser from 'body-parser';
 import bcrypt from 'bcrypt';
-import knex from 'knex';
 import cors from 'cors';
 import { handlereg } from './controllers/userreg.js';
 import { handlelogin } from './controllers/userlogin.js';
