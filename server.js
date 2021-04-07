@@ -2,23 +2,25 @@ import express from 'express';
 import mysql from 'mysql';
 import bodyParser from 'body-parser';
 import bcrypt from 'bcrypt';
+import knex from 'knex';
+import cors from 'cors';
+import { handlereg } from './controllers/userreg.js';
+import { handlelogin } from './controllers/userlogin.js';
 const app=express();
 
 app.use(bodyParser.json());
- 
-const db=mysql.createConnection({
-  host:"us-cdbr-east-03.cleardb.com",
-  user:"b45501885fe09f",
-  password:"15645a6c",
-  database:"heroku_b5557678aae1bf1"
-})
- 
-db.connect((err)=>{
-  if(err)throw err;
-  console.log("db connected");
-})
+app.use(cors());
+const db=knex({
+  client: 'mysql',
+  connection: {
+    host : 'us-cdbr-east-03.cleardb.com',
+    user : 'b45501885fe09f',
+    password : '15645a6c',
+    database : 'heroku_b5557678aae1bf1'
+  }
+});
 
-// post-> login (user )
+
 // get-> locality( locality and shop  )
 // get -> available_product(available_at and product)
 // get-> +/- (cart)
@@ -40,13 +42,18 @@ app.get('/', (req, res) => {
   });
 
 
-  // post-> register(user )
-app.post('/user',(req,res)=>{
- 
-  const {username,userid}=req.body;
-  res.json(userid);
-  console.log("lol");
-});
+
+// post-> userreg
+app.post('/userreg',(req,res)=>handlereg(req,res,db,bcrypt));
+
+// post-> login (user )
+app.post('/userlogin',(req,res)=>handlelogin(req,res,db,bcrypt))
+
+app.get('/check',(req,res)=>{
+  db.select('*').from('user')
+  .then(data=>res.json(data))
+
+})
 
 app.listen(3000,()=>{
   console.log("heyllo");
