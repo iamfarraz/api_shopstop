@@ -19,10 +19,10 @@ const db = mysql.createConnection({
   });
   
  db.connect((err)=>{
-     if(err)throw err;
+   if(err)throw err;
      console.log("db connected");
-   
  });
+
 
 
 // get-> locality( locality and shop )
@@ -41,9 +41,7 @@ const db = mysql.createConnection({
 // get-> myshop(available_at and prodct)
 // get-> myacc(shop)
 
-app.get('/', (req, res) => {
-    res.send('qkdnois')
-  });
+
 
 
 
@@ -57,13 +55,12 @@ app.post('/userlogin',(req,res)=>handlelogin(req,res,db,bcrypt))
 app.get('/check',(req,res)=>{
   const sql="SELECT * FROM user";
   db.query(sql, function (err, result) {
-    if (err) throw err;
-    console.log("Result: " + result);
-    res.json(result);
+      res.json(result);
   });
 
 })
 
+git
 app.listen(3000,()=>{
   console.log("heyllo");
 })

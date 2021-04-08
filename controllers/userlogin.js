@@ -8,8 +8,7 @@ if(!mail || !password){
 const sql=`SELECT * FROM user where mail='${mail}'`;
 
 db.query(sql,  (err, user) =>{
-  if (err) {res.json(err)}
-  else {
+  if (err) { throw err; }
     const isvalid=bcrypt.compareSync(password,user[0].password);
       if(isvalid){
        res.json(user[0])
@@ -18,7 +17,6 @@ db.query(sql,  (err, user) =>{
         res.status(400).json("wrong credentialscd")
       }
     
-  }
  
 });
 
