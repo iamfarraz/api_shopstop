@@ -25,7 +25,7 @@ const db = mysql.createConnection({
  });
 
 
-// get-> locality( locality and shop  )
+// get-> locality( locality and shop )
 // get -> available_product(available_at and product)
 // get-> +/- (cart)
 // get->order summary(cart)

@@ -1,18 +1,18 @@
 export const handlereg=(req,res,db,bcrypt)=>{
-    const {username,userid,mail,password,phone,houseno,sector,area,city,locality_pin_code}=req.body;
+    const {username,cust_id,mail,password,phone,houseno,sector,area,city,locality_pin_code}=req.body;
   // const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(password ,10);
 
 
 
-  if(!userid || !mail || !password || !username || !phone || !houseno || !area || !city || !locality_pin_code || !sector){
+  if(!cust_id || !mail || !password || !username || !phone || !houseno || !area || !city || !locality_pin_code || !sector){
     return res.status(400).json(" havent filled form correctly");
   }
 
   const user_sql = `
   INSERT INTO user 
   (
-    userid,
+    cust_id,
     mail,
     password,
     username,
@@ -25,7 +25,7 @@ export const handlereg=(req,res,db,bcrypt)=>{
     )
   
   VALUES ( 
-    '${userid}',
+    '${cust_id}',
     '${mail}',
     '${hash}',
     '${username}',
@@ -59,7 +59,7 @@ export const handlereg=(req,res,db,bcrypt)=>{
   });
 
   db.query(user_sql, function (err, result) {
-    if (err) { throw err; }
+    if (err) { res.json("gadbad in user addition") }
     else {
       console.log("user added");
     res.json(result);

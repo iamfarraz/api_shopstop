@@ -12,10 +12,10 @@ db.query(sql,  (err, user) =>{
   else {
     const isvalid=bcrypt.compareSync(password,user[0].password);
       if(isvalid){
-       res.json("sucess")
+       res.json(user[0])
       }
       else {
-        res.json("failed")
+        res.status(400).json("wrong credentialscd")
       }
     
   }
