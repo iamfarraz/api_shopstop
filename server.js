@@ -5,6 +5,7 @@ import bcrypt from 'bcrypt';
 import cors from 'cors';
 import { handlereg } from './controllers/userreg.js';
 import { handlelogin } from './controllers/userlogin.js';
+import { handleMyAcc } from "./controllers/user_account.js";
 const app=express();
 
 app.use(bodyParser.json());
@@ -24,16 +25,13 @@ const db = mysql.createConnection({
  });
 
 
-
-// get-> locality( locality and shop )
-// get -> available_product(available_at and product)
 // get-> +/- (cart)
 // get->order summary(cart)
 // get-> +/- order_summary(cart)
 // get-> buy(cart to order)
 
 // get -> order (order)
-// get-> account(user)
+
 
 // post-> register(shop )
 // post-> login (shop )
@@ -43,14 +41,18 @@ const db = mysql.createConnection({
 
 
 
-
-
 // post-> userreg
 app.post('/userreg',(req,res)=>handlereg(req,res,db,bcrypt));
 
 // post-> login (user )
 app.post('/userlogin',(req,res)=>handlelogin(req,res,db,bcrypt))
 
+// get-> account(user)
+app.get('/myaccount',(req,res)=>handleMyAcc(req,res,db))
+
+// get-> locality( locality and shop )
+
+// get -> available_product(available_at and product)
 
 app.get('/check',(req,res)=>{
   const sql="SELECT * FROM user";
@@ -60,7 +62,7 @@ app.get('/check',(req,res)=>{
 
 })
 
-git
+
 app.listen(3000,()=>{
   console.log("heyllo");
 })

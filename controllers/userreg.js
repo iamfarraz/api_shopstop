@@ -44,15 +44,21 @@ export const handlereg=(req,res,db,bcrypt)=>{
     '${area}'
  );
   `
-  db.query(loacality_sql, (err, result) =>{
-     if(err)throw err;
-      console.log("loaclity added");
-  });
 
-  db.query(user_sql, (err, result)=> {
-    if(err)throw err;
-    console.log("user added"); 
-  });
-res.json("added")
+
+db.query(loacality_sql, (err, result) =>{
+  if(err){return ;}
+   console.log(" new loaclity added");
+});
+
+db.query(user_sql, (err, result)=> {
+ if(err){   res.json(" user already availiable"); return ;}
+ else {
+  console.log(result); 
+  res.json(mail)
+ }
+ 
+});
+
 
 }

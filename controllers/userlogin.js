@@ -8,27 +8,27 @@ if(!mail || !password){
 const sql=`SELECT * FROM user where mail='${mail}'`;
 
 db.query(sql,  (err, user) =>{
-  if (err) { throw err; }
-    const isvalid=bcrypt.compareSync(password,user[0].password);
+  if (err) { throw err;}
+    if(user.length>0){
+      const isvalid=bcrypt.compareSync(password,user[0].password);
       if(isvalid){
        res.json(user[0])
       }
       else {
-        res.status(400).json("wrong credentialscd")
+        res.status(400).json("wrong credential")
       }
+    }
+    else { res.json("no such user exist"); }
     
- 
 });
 
-
+// res.json("no such user exist"); return;
  
   
 
 
 
-
-
-
+ 
    
 
 
