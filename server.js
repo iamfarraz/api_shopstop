@@ -6,6 +6,8 @@ import cors from 'cors';
 import { handlereg } from './controllers/userreg.js';
 import { handlelogin } from './controllers/userlogin.js';
 import { handleMyAcc } from "./controllers/user_account.js";
+import { handleshoplogin} from './controllers/shoplogin.js';
+import { handleshopreg} from './controllers/shopreg.js';
 const app=express();
 
 app.use(bodyParser.json());
@@ -35,7 +37,7 @@ const db = mysql.createConnection({
 
 // post-> register(shop )
 // post-> login (shop )
-// get-> add( available_at and product)
+// get-> add(available_at and product)
 // get-> myshop(available_at and prodct)
 // get-> myacc(shop)
 
@@ -46,6 +48,13 @@ app.post('/userreg',(req,res)=>handlereg(req,res,db,bcrypt));
 
 // post-> login (user )
 app.post('/userlogin',(req,res)=>handlelogin(req,res,db,bcrypt))
+
+// post ->shopreg
+app.post('/shopreg',(req,res)=>handleshopreg(req,res,db,bcrypt));
+
+// post ->shoplogin
+app.post('/shoplogin',(req,res)=>handleshoplogin(req,res,db,bcrypt));
+
 
 // get-> account(user)
 app.get('/myaccount',(req,res)=>handleMyAcc(req,res,db))
@@ -59,6 +68,15 @@ app.get('/check',(req,res)=>{
   db.query(sql, function (err, result) {
       res.json(result);
   });
+
+})
+
+app.get('/checkshop',(req,res)=>{
+  const sql="SELECT * FROM shop";
+  db.query(sql, function (err, result) {
+      res.json(result);
+  });
+  // res.send("hemloo")
 
 })
 
