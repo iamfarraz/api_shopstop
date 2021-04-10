@@ -8,6 +8,7 @@ import { handlelogin } from './controllers/userlogin.js';
 import { handleMyAcc } from "./controllers/user_account.js";
 import { handleshoplogin} from './controllers/shoplogin.js';
 import { handleshopreg} from './controllers/shopreg.js';
+import { handleAddProduct } from './controllers/addProduct.js';
 const app=express();
 
 app.use(bodyParser.json());
@@ -35,8 +36,7 @@ const db = mysql.createConnection({
 // get -> order (order)
 
 
-// post-> register(shop )
-// post-> login (shop )
+
 // get-> add(available_at and product)
 // get-> myshop(available_at and prodct)
 // get-> myacc(shop)
@@ -59,6 +59,8 @@ app.post('/shoplogin',(req,res)=>handleshoplogin(req,res,db,bcrypt));
 // get-> account(user)
 app.get('/myaccount',(req,res)=>handleMyAcc(req,res,db))
 
+// get-> add(available_at and product)
+app.get('/addProduct',(req,res)=>handleAddProduct(req,res,db))
 // get-> locality( locality and shop )
 
 // get -> available_product(available_at and product)
