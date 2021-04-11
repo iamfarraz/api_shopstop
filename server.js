@@ -9,10 +9,15 @@ import { handleMyAcc } from "./controllers/user_account.js";
 import { handleshoplogin} from './controllers/shoplogin.js';
 import { handleshopreg} from './controllers/shopreg.js';
 import { handleAddProduct } from './controllers/addProduct.js';
+import { handleMyShopAcc } from "./controllers/shopaccount.js";
+import { handleMyShop } from "./controllers/myshop.js";
+import { handleLocality } from "./controllers/locality.js";
+
 const app=express();
 
 app.use(bodyParser.json());
 app.use(cors());
+
 
 
 const db = mysql.createConnection({
@@ -36,10 +41,7 @@ const db = mysql.createConnection({
 // get -> order (order)
 
 
-
-// get-> add(available_at and product)
 // get-> myshop(available_at and prodct)
-// get-> myacc(shop)
 
 
 
@@ -61,7 +63,15 @@ app.get('/myaccount',(req,res)=>handleMyAcc(req,res,db))
 
 // get-> add(available_at and product)
 app.get('/addProduct',(req,res)=>handleAddProduct(req,res,db))
+
+// get-> myacc(shop)
+app.get('/myshopaccount',(req,res)=>handleMyShopAcc(req,res,db))
+
+// get-> myshop(available_at and prodct)
+app.get('/myshop',(req,res)=>handleMyShop(req,res,db))
+
 // get-> locality( locality and shop )
+app.get('/locality',(req,res)=>handleLocality(req,res,db))
 
 // get -> available_product(available_at and product)
 
