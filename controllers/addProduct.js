@@ -1,5 +1,4 @@
 export const handleAddProduct=(req,res,db)=>{
-
     // shopid	int(11) PK
 	// pid	varchar(40) PK
 	// quantity_available	int(11)

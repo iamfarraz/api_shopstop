@@ -37,7 +37,6 @@ const db = mysql.createConnection({
 
 
 
-// get-> add(available_at and product)
 // get-> myshop(available_at and prodct)
 // get-> myacc(shop)
 
@@ -61,6 +60,8 @@ app.get('/myaccount',(req,res)=>handleMyAcc(req,res,db))
 
 // get-> add(available_at and product)
 app.get('/addProduct',(req,res)=>handleAddProduct(req,res,db))
+
+
 // get-> locality( locality and shop )
 
 // get -> available_product(available_at and product)
