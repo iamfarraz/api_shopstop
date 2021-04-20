@@ -43,6 +43,10 @@ export const handlereg=(req,res,db,bcrypt)=>{
  );
   `
 
+  const getuser_sql=`
+  select * from user where mail=${mail}
+  `
+
 
 db.query(loacality_sql, (err, result) =>{
   if(err){return ;}
@@ -52,8 +56,13 @@ db.query(loacality_sql, (err, result) =>{
 db.query(user_sql, (err, result)=> {
  if(err){   res.json(" user already availiable"); return ;}
 
-  console.log(result); 
-  res.json(mail)
+   
+  db.query(getuser_sql,(err,user)=>{
+    if(err)throw err;
+    res.json(user[0])
+    console.log(user[0])
+  })
+ 
  
  
 });
