@@ -54,7 +54,7 @@ db.query(loacality_sql, (err, result) =>{
 });
 
 db.query(user_sql, (err, result)=> {
- if(err){   res.json(" user already availiable"); return ;}
+ if(err){  throw err;}
 
    
   db.query(getuser_sql,(err,user)=>{
