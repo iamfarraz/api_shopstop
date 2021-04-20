@@ -32,7 +32,7 @@ const db = mysql.createConnection({
      console.log("db connected");
  });
 
-
+ app.get('/',(req,res)=>{res.send("I am alive bitch")})
 // get-> +/- (cart)
 // get->order summary(cart)
 // get-> +/- order_summary(cart)
