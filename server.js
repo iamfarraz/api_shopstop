@@ -78,24 +78,23 @@ app.get('/locality',(req,res)=>handleLocality(req,res,db))
 
 // get -> available_product(available_at and product)
 
-app.get('/check',(req,res)=>{
-  const sql="SELECT * FROM user";
-  db.query(sql, function (err, result) {
-      res.json(result);
-  });
+// app.get('/check',(req,res)=>{
+//   const sql="SELECT * FROM user";
+//   db.query(sql, function (err, result) {
+//       res.json(result);
+//   });
 
-})
+// })
 
-app.get('/checkshop',(req,res)=>{
-  const sql="SELECT * FROM shop";
-  db.query(sql, function (err, result) {
-      res.json(result);
-  });
-  // res.send("hemloo")
+// app.get('/checkshop',(req,res)=>{
+//   const sql="SELECT * FROM shop";
+//   db.query(sql, function (err, result) {
+//       res.json(result);
+//   });
+//   // res.send("hemloo")
 
-})
+// })
 
-
-app.listen(process.env.PORT|| 3000,()=>{
-  console.log("heyllo");
+app.listen(process.env.PORT || 3000,()=>{
+  console.log(`i am alivee at `)
 })
