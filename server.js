@@ -81,6 +81,7 @@ app.get('/locality',(req,res)=>handleLocality(req,res,db))
 app.get('/check',(req,res)=>{
   const sql="SELECT * FROM user";
   db.query(sql, function (err, result) {
+    if(err)throw err;
       res.json(result);
   });
 
@@ -89,6 +90,7 @@ app.get('/check',(req,res)=>{
 app.get('/checkshop',(req,res)=>{
   const sql="SELECT * FROM shop";
   db.query(sql, function (err, result) {
+    if(err)throw err;
       res.json(result);
   });
   // res.send("hemloo")
