@@ -44,7 +44,7 @@ export const handlereg=(req,res,db,bcrypt)=>{
   `
 
   const getuser_sql=`
-  select * from user where mail=${mail}
+  select * from user where mail='${mail}'
   `
 
 
@@ -54,11 +54,11 @@ db.query(loacality_sql, (err, result) =>{
 });
 
 db.query(user_sql, (err, result)=> {
- if(err){  throw err;}
+ if(err){  res.json("user already there"); return ;}
 
    
   db.query(getuser_sql,(err,user)=>{
-    if(err)throw err;
+    if(err){res.json("somthing wrong in fetching"); return ;}
     res.json(user[0])
     console.log(user[0])
   })
