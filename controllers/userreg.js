@@ -53,10 +53,10 @@ db.query(loacality_sql, (err, result) =>{
 
 db.query(user_sql, (err, result)=> {
  if(err){   res.json(" user already availiable"); return ;}
- else {
+
   console.log(result); 
   res.json(mail)
- }
+ 
  
 });
 

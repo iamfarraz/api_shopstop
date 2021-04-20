@@ -17,6 +17,7 @@ export const handleshopreg=(req,res,db,bcrypt)=>{
     category,
     locality_pin_code 
     )
+    
 
   VALUES ( 
     '${shop_email}',
@@ -38,6 +39,7 @@ export const handleshopreg=(req,res,db,bcrypt)=>{
        '${address}'
     );
      `
+  
      
      
 db.query(loacality_sql, (err, result) =>{
@@ -47,10 +49,12 @@ db.query(loacality_sql, (err, result) =>{
 
 db.query(shop_sql, (err, result)=> {
  if(err){   res.json("shop already availiable"); return ;}
+
  else {
   console.log(result); 
-  res.json(shop_mail)
+  res.json(shop_email)
  }
+
  
 });
    
