@@ -20,17 +20,17 @@ app.use(cors());
 
 
 
-const db = mysql.createConnection({
+const db = mysql.createPool({
   host : 'us-cdbr-east-03.cleardb.com',
   user : 'b45501885fe09f',
   password : '15645a6c',
   database : 'heroku_b5557678aae1bf1'
   });
   
- db.connect((err)=>{
-   if(err)throw err;
-     console.log("db connected");
- });
+//  db.connect((err)=>{
+//    if(err)throw err;
+//      console.log("db connected");
+//  });
 
  app.get('/',(req,res)=>{res.send("I am alive boiii")})
 // get-> +/- (cart)
@@ -97,6 +97,6 @@ app.get('/checkshop',(req,res)=>{
 
 })
 
-app.listen(process.env.PORT || 3000,()=>{
-  console.log(`i am alivee at `)
+app.listen(process.env.PORT || 3001,()=>{
+  console.log(`i am alivee at ${process.env.PORT}`)
 })
