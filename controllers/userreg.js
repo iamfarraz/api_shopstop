@@ -1,8 +1,8 @@
 export const handlereg=(req,res,db,bcrypt)=>{
-    const {username,mail,password,phone,houseno,sector,area,city,locality_pin_code}=req.body;
+    const {username,mail,password,phone,houseno,area,city,locality_pin_code}=req.body;
   // const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(password ,10);
-  if(!mail || !password || !username || !phone || !houseno || !area || !city || !locality_pin_code || !sector){
+  if(!mail || !password || !username || !phone || !houseno || !area || !city || !locality_pin_code ){
     return res.status(400).json(" havent filled form correctly");
   }
 
@@ -14,7 +14,6 @@ export const handlereg=(req,res,db,bcrypt)=>{
     username,
     phone,
     houseno,
-    sector,
     area,
     city,
     locality_pin_code 
@@ -26,7 +25,6 @@ export const handlereg=(req,res,db,bcrypt)=>{
     '${username}',
     '${phone}',
     '${houseno}',
-    '${sector}',
     '${area}',
     '${city}',
     '${locality_pin_code}'
