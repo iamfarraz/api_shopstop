@@ -21,10 +21,10 @@ app.use(cors());
 
 
 const db = mysql.createPool({
-  host : 'us-cdbr-east-03.cleardb.com',
-  user : 'b45501885fe09f',
-  password : '15645a6c',
-  database : 'heroku_b5557678aae1bf1'
+  host : 'b5hwsqmnquboua15lqeb-mysql.services.clever-cloud.com',
+  user : 'uksinxof2hbl29tl',
+  password : '4xJCG3mNXGQmw7ISInws',
+  database : 'b5hwsqmnquboua15lqeb'
   });
   
 //  db.connect((err)=>{
@@ -33,6 +33,7 @@ const db = mysql.createPool({
 //  });
 
  app.get('/',(req,res)=>{res.send("I am alive boiii")})
+
 // get-> +/- (cart)
 // get->order summary(cart)
 // get-> +/- order_summary(cart)
@@ -87,6 +88,7 @@ app.get('/check',(req,res)=>{
 
 })
 
+//shows all shops
 app.get('/checkshop',(req,res)=>{
   const sql="SELECT * FROM shop";
   db.query(sql, function (err, result) {
