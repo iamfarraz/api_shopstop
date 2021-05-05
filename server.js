@@ -59,25 +59,25 @@ app.post('/shoplogin',(req,res)=>handleshoplogin(req,res,db,bcrypt));
 
 // get-> account(user)
 // users personal info
-app.get('/myaccount',(req,res)=>handleMyAcc(req,res,db))
+app.post('/myaccount',(req,res)=>handleMyAcc(req,res,db))
 
-// get-> add(available_at and product)
+// post-> add(available_at and product)
 // to add product to a shop
-app.get('/addProduct',(req,res)=>handleAddProduct(req,res,db))
+app.post('/addProduct',(req,res)=>handleAddProduct(req,res,db))
 
-// get-> myacc(shop)
+// post-> myacc(shop)
 // gives personal info of the shop
-app.get('/myshopaccount',(req,res)=>handleMyShopAcc(req,res,db))
+app.post('/myshopaccount',(req,res)=>handleMyShopAcc(req,res,db))
 
-// get-> myshop(available_at and prodct)
+// post-> myshop(available_at and prodct)
 // gives info about whats in my shop
-app.get('/myshop',(req,res)=>handleMyShop(req,res,db))
+app.post('/myshop',(req,res)=>handleMyShop(req,res,db))
 
-// get-> locality( locality and shop )
+// post-> locality( locality and shop )
 // gives info about in this locality which shop are there
 app.post('/locality',(req,res)=>handleLocality(req,res,db))
 
-// get -> available_product(available_at and product)
+// post -> available_product(available_at and product)
 
 app.get('/check',(req,res)=>{
   const sql="SELECT * FROM user";
