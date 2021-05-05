@@ -75,7 +75,7 @@ app.get('/myshop',(req,res)=>handleMyShop(req,res,db))
 
 // get-> locality( locality and shop )
 // gives info about in this locality which shop are there
-app.get('/locality',(req,res)=>handleLocality(req,res,db))
+app.post('/locality',(req,res)=>handleLocality(req,res,db))
 
 // get -> available_product(available_at and product)
 
