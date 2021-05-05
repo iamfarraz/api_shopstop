@@ -6,7 +6,7 @@ export const handleLocality=(req,res,db)=>{
 
     db.query(sql,(err,shop)=>{
         if(err) {   return;}
-        if(shop.length===0){res.status(400).json("no items match your search"); return;}
+        // if(shop.length===0){res.json("no items match your search"); return;}
         res.json(shop);
         //console.log(shop)
     })
