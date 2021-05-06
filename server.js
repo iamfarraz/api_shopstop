@@ -12,6 +12,9 @@ import { handleAddProduct } from './controllers/addProduct.js';
 import { handleMyShopAcc } from "./controllers/shopaccount.js";
 import { handleMyShop } from "./controllers/myshop.js";
 import { handleLocality } from "./controllers/locality.js";
+import {handleCart} from "./controllers/addCart.js";
+import { handleRemoveProductCart } from './controllers/removeProductCart.js';
+import {handleBuy} from './controllers/buy.js';
 
 const app=express();
 
@@ -34,15 +37,19 @@ const db = mysql.createPool({
 
  app.get('/',(req,res)=>{res.send("I am alive boiii")})
 
-// get-> +/- (cart)
+
 // get->order summary(cart)
 // get-> +/- order_summary(cart)
-// get-> buy(cart to order)
+
 
 // get -> order (order)
 
-
-
+//post->addCart(adding to cart)
+app.post('/addCart',(req,res)=>handleCart(req,res,db));
+// post-> - product from (cart)
+app.post('/removeProductCart',(req,res)=>handleRemoveProductCart(req,res,db));
+// post-> buy(cart to order)
+app.post('/buy',(req,res)=>handleBuy(req,res,db));
 
 // post-> userreg
 app.post('/userreg',(req,res)=>handlereg(req,res,db,bcrypt));
