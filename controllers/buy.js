@@ -42,7 +42,7 @@ export const handleBuy=(req,res,db)=>{
             db.query(order_sql,(err,result2)=>{
                 if(err)throw err;
                 console.log(result2)
-                res.json(result2)
+              
             }) 
         })
         const del_sql=`
