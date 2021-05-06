@@ -12,7 +12,7 @@ export const handleBuy=(req,res,db)=>{
     var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     var yyyy = today.getFullYear();
     today = `${yyyy}-${mm}-${dd}`
-    var time =  `${today.getHours}:${today.getMinutes}:${today.getSeconds}`;
+    var time =  `23:12:11`;
     db.query(sql,(err,result)=>{
         if(err)throw err;
         console.log(result)
@@ -42,15 +42,16 @@ export const handleBuy=(req,res,db)=>{
             db.query(order_sql,(err,result2)=>{
                 if(err)throw err;
                 console.log(result2)
+                res.json(result2)
             }) 
         })
-        const del_sql=`
-        delete from cart where cust_id=${cust_id}
-        ` 
-        db.query(del_sql,(err,result)=>{
-           if(err)throw err;
-           res.json("deleted from cart")
-        })
+        // const del_sql=`
+        // delete from cart where cust_id=${cust_id}
+        // ` 
+        // db.query(del_sql,(err,result)=>{
+        //    if(err)throw err;
+        //    res.json("deleted from cart")
+        // })
       
        
     })
