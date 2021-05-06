@@ -45,13 +45,13 @@ export const handleBuy=(req,res,db)=>{
                 res.json(result2)
             }) 
         })
-        // const del_sql=`
-        // delete from cart where cust_id=${cust_id}
-        // ` 
-        // db.query(del_sql,(err,result)=>{
-        //    if(err)throw err;
-        //    res.json("deleted from cart")
-        // })
+        const del_sql=`
+        delete from cart where cust_id=${cust_id}
+        ` 
+        db.query(del_sql,(err,result)=>{
+           if(err)throw err;
+           res.json("deleted from cart")
+        })
       
        
     })
