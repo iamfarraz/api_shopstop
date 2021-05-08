@@ -39,22 +39,24 @@ export const handleshopreg=(req,res,db,bcrypt)=>{
        '${address}'
     );
      `
+     const getshop_sql=`
+     select * from shop where shop_email='${shop_email}'`
   
      
      
 db.query(loacality_sql, (err, result) =>{
-  if(err){return ;}
-   console.log(" new loaclity added");
+  if(err){return}
+   console.log(" new loaclity added",result);
 });
 
 db.query(shop_sql, (err, result)=> {
- if(err){   res.json("shop already availiable"); return ;}
-
- else {
-  console.log(result); 
-  res.json(shop_email)
- }
-
+ if(err){ res.json(err);  return;}
+  
+  db.query(getshop_sql,(err,shop)=>{
+    if(err){res.json("somthing wrong in fetching"); return ;}
+    res.json(shop[0])
+    console.log(user[0])
+  })
  
 });
    

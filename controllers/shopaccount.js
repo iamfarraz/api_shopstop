@@ -1,6 +1,6 @@
 export const handleMyShopAcc=(req,res,db)=>{
     const {shopid}=req.body;
-
+ 
     const sql=`select * from shop where shopid=${shopid}`;
 
     db.query(sql,(err,shop)=>{

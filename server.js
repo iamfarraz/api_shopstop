@@ -12,38 +12,56 @@ import { handleAddProduct } from './controllers/addProduct.js';
 import { handleMyShopAcc } from "./controllers/shopaccount.js";
 import { handleMyShop } from "./controllers/myshop.js";
 import { handleLocality } from "./controllers/locality.js";
+import {handleCart} from "./controllers/addCart.js";
+import { handleRemoveProductCart } from './controllers/removeProductCart.js';
+import {handleBuy} from './controllers/buy.js';
 
 const app=express();
 
 app.use(bodyParser.json());
 app.use(cors());
 
-
-
-const db = mysql.createConnection({
-  host : 'us-cdbr-east-03.cleardb.com',
-  user : 'b45501885fe09f',
-  password : '15645a6c',
-  database : 'heroku_b5557678aae1bf1'
+const db = mysql.createPool({
+  host : 'localhost',
+  user : 'root',
+  password:'Faraz999$',
+  database : 'b5hwsqmnquboua15lqeb'
   });
   
- db.connect((err)=>{
-   if(err)throw err;
-     console.log("db connected");
- });
+  // bc31c1b99581b9
+  // baa6bac1
+  // @us-cdbr-east-03.cleardb.com
+  // heroku_fab3646936ce7a5
+  
+
+  //Clever Cloud
+// const db = mysql.createPool({
+//   host : 'b5hwsqmnquboua15lqeb-mysql.services.clever-cloud.com',
+//   user : 'uksinxof2hbl29tl',
+//   password : '4xJCG3mNXGQmw7ISInws',
+//   database : 'b5hwsqmnquboua15lqeb'
+//   });
+  
+//  db.connect((err)=>{
+//    if(err)throw err;
+//      console.log("db connected");
+//  });
+
+ app.get('/',(req,res)=>{res.send("I am alive boiii")})
 
 
-// get-> +/- (cart)
 // get->order summary(cart)
 // get-> +/- order_summary(cart)
-// get-> buy(cart to order)
+
 
 // get -> order (order)
 
-
-// get-> myshop(available_at and prodct)
-
-
+//post->addCart(adding to cart)
+app.post('/addCart',(req,res)=>handleCart(req,res,db));
+// post-> - product from (cart)
+app.post('/removeProductCart',(req,res)=>handleRemoveProductCart(req,res,db));
+// post-> buy(cart to order)
+app.post('/buy',(req,res)=>handleBuy(req,res,db));
 
 // post-> userreg
 app.post('/userreg',(req,res)=>handlereg(req,res,db,bcrypt));
@@ -59,40 +77,47 @@ app.post('/shoplogin',(req,res)=>handleshoplogin(req,res,db,bcrypt));
 
 
 // get-> account(user)
-app.get('/myaccount',(req,res)=>handleMyAcc(req,res,db))
+// users personal info
+app.post('/myaccount',(req,res)=>handleMyAcc(req,res,db))
 
-// get-> add(available_at and product)
-app.get('/addProduct',(req,res)=>handleAddProduct(req,res,db))
+// post-> add(available_at and product)
+// to add product to a shop
+app.post('/addProduct',(req,res)=>handleAddProduct(req,res,db))
 
-// get-> myacc(shop)
-app.get('/myshopaccount',(req,res)=>handleMyShopAcc(req,res,db))
+// post-> myacc(shop)
+// gives personal info of the shop
+app.post('/myshopaccount',(req,res)=>handleMyShopAcc(req,res,db))
 
-// get-> myshop(available_at and prodct)
-app.get('/myshop',(req,res)=>handleMyShop(req,res,db))
+// post-> myshop(available_at and prodct)
+// gives info about whats in my shop
+app.post('/myshop',(req,res)=>handleMyShop(req,res,db))
 
-// get-> locality( locality and shop )
-app.get('/locality',(req,res)=>handleLocality(req,res,db))
+// post-> locality( locality and shop )
+// gives info about in this locality which shop are there
+app.post('/locality',(req,res)=>handleLocality(req,res,db))
 
-// get -> available_product(available_at and product)
+// post -> available_product(available_at and product)
 
 app.get('/check',(req,res)=>{
   const sql="SELECT * FROM user";
   db.query(sql, function (err, result) {
+    if(err)throw err;
       res.json(result);
   });
 
 })
 
+//shows all shops
 app.get('/checkshop',(req,res)=>{
   const sql="SELECT * FROM shop";
   db.query(sql, function (err, result) {
+    if(err)throw err;
       res.json(result);
   });
   // res.send("hemloo")
 
 })
 
-
-app.listen(3000,()=>{
-  console.log("heyllo");
+app.listen(process.env.PORT || 3001,()=>{
+  console.log(`i am alivee at ${process.env.PORT}`)
 })

@@ -1,5 +1,4 @@
 export const handleAddProduct=(req,res,db)=>{
-
     // shopid	int(11) PK
 	// pid	varchar(40) PK
 	// quantity_available	int(11)
@@ -59,7 +58,7 @@ console.log("prodct in this shop is already presnt");
               if(err)throw err;
               let current_qty=0;
               current_qty=result[0].quantity_available;  
-              current_qty= +current_qty + +qty;
+              current_qty= +current_qty + +qty;// +before variable to make it integer
 
               const qtyinc_sql=`
               update available_at
@@ -79,3 +78,4 @@ console.log("prodct in this shop is already presnt");
 
    
 }
+
