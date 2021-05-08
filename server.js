@@ -14,7 +14,10 @@ import { handleMyShop } from "./controllers/myshop.js";
 import { handleLocality } from "./controllers/locality.js";
 import {handleCart} from "./controllers/addCart.js";
 import { handleRemoveProductCart } from './controllers/removeProductCart.js';
+import {handleDisplayCart} from './controllers/displaycart.js';
+import {handleDisplayOrder} from './controllers/displayorder.js';
 import {handleBuy} from './controllers/buy.js';
+
 
 const app=express();
 
@@ -51,10 +54,12 @@ const db = mysql.createPool({
 
 
 // get->order summary(cart)
+app.post('/displayCart',(req,res)=>handleDisplayCart(req,res,db));
 // get-> +/- order_summary(cart)
 
 
 // get -> order (order)
+app.post('/displayOrder',(req,res)=>handleDisplayOrder(req,res,db));
 
 //post->addCart(adding to cart)
 app.post('/addCart',(req,res)=>handleCart(req,res,db));
