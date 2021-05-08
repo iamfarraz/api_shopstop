@@ -67,7 +67,7 @@ export const handleCart=(req,res,db)=>{
                           db.query(qtyinc_sql,(err,result)=>{
                               if(err)throw err;
                               console.log("incresed in cart",current_qty);
-                             res.json(cur_total_price) 
+                             res.json(current_qty) 
                           })
                             
 
