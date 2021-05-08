@@ -8,7 +8,7 @@ export const handleMyShop=(req,res,db)=>{
       if(err){throw err;}
       res.json(allproduct);
   })
-     
-
+  
+  
 
 }

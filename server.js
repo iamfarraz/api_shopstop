@@ -24,26 +24,23 @@ const app=express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const db = mysql.createPool({
-  host : 'localhost',
-  user : 'root',
-  password:'Faraz999$',
-  database : 'b5hwsqmnquboua15lqeb'
-  });
+// const db = mysql.createPool({
+//   host : 'localhost',
+//   user : 'root',
+//   password:'Faraz999$',
+//   database : 'b5hwsqmnquboua15lqeb'
+//   });
   
-  // bc31c1b99581b9
-  // baa6bac1
-  // @us-cdbr-east-03.cleardb.com
-  // heroku_fab3646936ce7a5
+ 
   
 
   //Clever Cloud
-// const db = mysql.createPool({
-//   host : 'b5hwsqmnquboua15lqeb-mysql.services.clever-cloud.com',
-//   user : 'uksinxof2hbl29tl',
-//   password : '4xJCG3mNXGQmw7ISInws',
-//   database : 'b5hwsqmnquboua15lqeb'
-//   });
+const db = mysql.createPool({
+  host : 'b5hwsqmnquboua15lqeb-mysql.services.clever-cloud.com',
+  user : 'uksinxof2hbl29tl',
+  password : '4xJCG3mNXGQmw7ISInws',
+  database : 'b5hwsqmnquboua15lqeb'
+  });
   
 //  db.connect((err)=>{
 //    if(err)throw err;
